@@ -4,6 +4,7 @@ import {
   errorsTypeAPI,
   InitTypeAPI,
   UploadFileTypeAPI,
+  tokenLogin
 } from "./../../types/api/index";
 import { APIObjectType, sendAllProps } from "../../types/api/index";
 import axios, { AxiosResponse } from "axios";
@@ -330,4 +331,24 @@ export async function uploadFile(
   const formData = new FormData();
   formData.append("file", file);
   return await axios.post(`/api/v1/upload/${id}`, formData);
+}
+
+/**
+ * Login
+ *
+ */
+export async function loginSystem(
+  username: string,
+  password: string
+): Promise<AxiosResponse<tokenLogin>> {
+  try {
+    const response = await axios.post('/login', {
+      username: username,
+      password: password
+    });
+    const data = response.data;
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }

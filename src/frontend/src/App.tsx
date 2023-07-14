@@ -15,8 +15,12 @@ import { TabsContext } from "./contexts/tabsContext";
 import { getVersion } from "./controllers/API";
 import Router from "./routes";
 import Header from "./components/headerComponent";
+import Login from './pages/Login/Login';
+import useToken from "./components/Token/useToken";
 
 export default function App() {
+  const { token, setToken } = useToken();
+
   let { setCurrent, setShowSideBar, setIsStackedOpen } =
     useContext(locationContext);
   let location = useLocation();
@@ -121,6 +125,10 @@ export default function App() {
       prevAlertsList.filter((alert) => alert.id !== id),
     );
   };
+
+  if(!token) {
+    return <Login setToken={setToken} />  
+  }
 
   return (
     //need parent component with width and height

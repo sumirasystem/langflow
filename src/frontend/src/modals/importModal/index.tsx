@@ -189,7 +189,7 @@ export default function ImportModal() {
                   fill="currentColor"
                 />
               </svg>
-              <span className="ml-2 ">Langflow Examples</span>
+              <span className="ml-2 ">Examples</span>
             </a>
           </div>
         </DialogFooter>
